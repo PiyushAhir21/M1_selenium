@@ -25,15 +25,15 @@ public class Shoppersstack {
 		WebElement pin = driver.findElement(By.id("Check Delivery"));
 		pin.sendKeys("201301");
 
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//		WebElement check = wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
-//		check.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebElement check = wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
+		check.click();
 
-		FluentWait wait = new FluentWait(driver);
-		wait.withTimeout(Duration.ofSeconds(15));
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
-		wait.pollingEvery(Duration.ofSeconds(2));
-		wait.ignoring(NoSuchElementException.class);
+//		FluentWait wait = new FluentWait(driver);
+//		wait.withTimeout(Duration.ofSeconds(15));
+//		wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
+//		wait.pollingEvery(Duration.ofSeconds(2));
+//		wait.ignoring(NoSuchElementException.class);
 		
 		driver.findElement(By.id("Check")).click();
 	}
