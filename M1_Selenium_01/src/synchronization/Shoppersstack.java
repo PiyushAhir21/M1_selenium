@@ -1,6 +1,7 @@
 package synchronization;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,11 +29,12 @@ public class Shoppersstack {
 //		WebElement check = wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
 //		check.click();
 
-//		FluentWait wait = new FluentWait(driver);
-//		wait.withTimeout(Duration.ofSeconds(15));
-//		wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
-//		wait.pollingEvery(Duration.ofSeconds(2));
-
+		FluentWait wait = new FluentWait(driver);
+		wait.withTimeout(Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Check")));
+		wait.pollingEvery(Duration.ofSeconds(2));
+		wait.ignoring(NoSuchElementException.class);
+		
 		driver.findElement(By.id("Check")).click();
 	}
 }
