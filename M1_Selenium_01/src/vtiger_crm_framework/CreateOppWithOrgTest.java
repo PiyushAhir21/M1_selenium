@@ -10,18 +10,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
-public class CreateConTest {
+public class CreateOppWithOrgTest {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		ChromeOptions opt = new ChromeOptions();
-		opt.addArguments("--start-maximized");
-		opt.addArguments("--incognito");
 
-		WebDriver driver = new ChromeDriver(opt);
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-
-		driver.get("http://localhost:8888/");
 
 //		Login
 		driver.get("http://localhost:8888/");
@@ -48,7 +44,7 @@ public class CreateConTest {
 //		IDs.remove(parentID);
 		for (String id : IDs) {
 			driver.switchTo().window(id);
-			
+
 			if (driver.getCurrentUrl().contains("module=Accounts&action")) {
 				break;
 			} else {
@@ -59,7 +55,7 @@ public class CreateConTest {
 		String orgName = "jspider_123";
 
 		Thread.sleep(2000);
-		
+
 		driver.findElement(By.name("search_text")).sendKeys(orgName);
 		driver.findElement(By.name("search")).click();
 
