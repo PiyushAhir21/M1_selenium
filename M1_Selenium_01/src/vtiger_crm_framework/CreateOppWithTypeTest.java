@@ -9,7 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateOppWithTypeTest {
 
@@ -31,11 +33,16 @@ public class CreateOppWithTypeTest {
 		WebElement submitBtn = driver.findElement(By.id("submitButton"));
 		submitBtn.click();
 
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+		WebElement we = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("123")));
+		
 //		create Opportunity
 		driver.findElement(By.linkText("Opportunities")).click();
 		driver.findElement(By.xpath("//img[@title='Create Opportunity...']")).click();
 
-		String potentialName = "demovtiger_" + (int) (Math.random() * 100);
+		String potentialName = "vtiger_" + (int) (Math.random() * 100);
 		driver.findElement(By.name("potentialname")).sendKeys(potentialName);
 
 		Thread.sleep(2000);

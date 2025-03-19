@@ -32,7 +32,7 @@ public class CreateOppWithOrgTest {
 		driver.findElement(By.linkText("Opportunities")).click();
 		driver.findElement(By.xpath("//img[@title='Create Opportunity...']")).click();
 
-		String potentialName = "demovtiger_" + (int) (Math.random() * 100);
+		String potentialName = "vtiger_" + (int) (Math.random() * 100);
 		driver.findElement(By.name("potentialname")).sendKeys(potentialName);
 		Thread.sleep(2000);
 

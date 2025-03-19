@@ -1,6 +1,9 @@
 package vtiger_crm_framework;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -12,21 +15,32 @@ import org.openqa.selenium.interactions.Actions;
 
 public class CreateOppWithDateTest {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
-		ChromeOptions opt = new ChromeOptions();
-		opt.addArguments("--start-maximized");
-		opt.addArguments("--incognito");
+		FileInputStream fis = new FileInputStream("C:\\Users\\User\\git\\M1_selenium\\M1_Selenium_01\\resource\\commondata.properties");
+		
+		Properties pObj = new Properties();
+		pObj.load(fis);
 
-		WebDriver driver = new ChromeDriver(opt);
+		String URL = pObj.getProperty("url");
+		String BROWSER = pObj.getProperty("bro");
+		String USERNAME = pObj.getProperty("un");
+		String PASSWORD = pObj.getProperty("pwd");
+		
+		
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 //		Login
-		driver.get("http://localhost:8888/");
+		driver.get(URL);
+		
 		WebElement username = driver.findElement(By.name("user_name"));
-		username.sendKeys("admin");
+		username.sendKeys(USERNAME);
+		
 		WebElement password = driver.findElement(By.name("user_password"));
-		password.sendKeys("password");
+		password.sendKeys(PASSWORD);
+		
 		WebElement submitBtn = driver.findElement(By.id("submitButton"));
 		submitBtn.click();
 
@@ -34,7 +48,7 @@ public class CreateOppWithDateTest {
 		driver.findElement(By.linkText("Opportunities")).click();
 		driver.findElement(By.xpath("//img[@title='Create Opportunity...']")).click();
 
-		String potentialName = "demovtiger_" + (int) (Math.random() * 100);
+		String potentialName = "vtiger_" + (int) (Math.random() * 100);
 		driver.findElement(By.name("potentialname")).sendKeys(potentialName);
 
 		Thread.sleep(2000);
